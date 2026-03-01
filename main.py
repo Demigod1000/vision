@@ -9,8 +9,13 @@ import pytesseract
 from PIL import Image, ImageTk
 from ultralytics import YOLO
 
-# Tell pytesseract where the executable is on Windows
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+import platform
+
+# Tell pytesseract where the executable is depending on the OS
+if platform.system() == "Windows":
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:
+    pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 
 class ObjectDetectionApp(ctk.CTk):
     def __init__(self):
